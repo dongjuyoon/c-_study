@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct item {
+	int data;
+	struct item *next;
+};
+
+// is_empty 함수는 큐가 비어있으면 1을, 아니면 0을 돌려준다.
+int is_empty(struct item * s){
+	return s->next == NULL;
+}
+
+void insert(struct item * s, int n){
+
+	struct item * t = (struct item *)malloc(sizeof(struct item));
+
+	t -> data = n;
+	t -> next = NULL;
+
+	struct item * p =s;
+	while(p->next != NULL){
+		p = p->next;
+	}
+	p->next = t;
+	// 가장 뒤에다 붙여준다.
+}
+
+
+// top 함수는 가장 오래된 항목(가장 앞에 있는) 값을 돌려준다.
+int top(struct item * s){
+	return s->next->data;
+}
+// pop함수는 가장 앞의 항목을 없앤다.
+void pop(struct item * s){
+	struct item * temp = s-> next;
+	s-> next  = temp -> next;
+	free(temp);
+
+}
+
+// main함수는 수정하지 않는다.
+int main(){
+	int value;
+	struct item dummy;
+	struct item * start = &dummy ;  // dummy의 주소. 고정된다.
+	start->next = 0;  // dummy의 next가 0이면 비어있는 스택임.
+
+	while ( scanf("%d", &value) == 1){
+		insert(start, value);
+	}
+
+	while ( ! is_empty(start) ){
+		printf("First Element is %d\n", top(start));
+		pop(start);
+	}
+
+}
