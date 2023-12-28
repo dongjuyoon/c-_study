@@ -1,0 +1,71 @@
+#include <stdio.h>
+struct student{
+	char name[15];
+	int grade[10];
+	float average;
+};
+int main()
+{
+	struct student st[100];
+
+	struct student *ptr[100];
+
+	int i = 0;
+
+	int j= 0;
+
+	scanf("%d %d" ,  &i, &j);
+
+	for( int u=0; u<i; u++){
+		scanf("%s", st[u].name) ;
+
+
+		for( int t=0;t<j ; t++){
+			scanf("%d", &st[u].grade[t]);
+				st[u].average += st[u].grade[t];
+
+		}
+		st[u].average = st[u].average / j;
+	}
+
+
+	for(int o=0; o<i; o++){
+		ptr[o] = &st[o];
+	}
+
+
+	for ( int a=0; a< i-1; a++){
+		for ( int n=0; n< i-1 -a;n++){
+			if( ptr[n]->average < ptr[n+1] -> average){
+				struct student *temp = ptr[n];
+				ptr[n] = ptr[n + 1];
+				ptr[n + 1] = temp;
+			}
+
+		}
+	}
+
+
+	for (int x = 0; x < i; x++) {
+		printf("%s  ", ptr[x] -> name);
+		for (int k = 0; k < j; k++) {
+			printf("%d ", ptr[x] ->grade[k]);
+		}
+		printf("%.2f\n", ptr[x] ->average);
+	}
+
+
+
+printf("\n");
+	for (int x = 0; x < i; x++) {
+		printf("%s  ", st[x].name);
+		for (int k = 0; k < j; k++) {
+			printf("%d ", st[x].grade[k]);
+		}
+		printf("%.2f\n", st[x].average);
+	}
+
+
+}
+
+
