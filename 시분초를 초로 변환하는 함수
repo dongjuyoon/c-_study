@@ -1,0 +1,24 @@
+#include <stdio.h>
+int seconds(int hour, int minuite, int second){
+
+	int total;
+	total = hour * 3600 + minuite * 60 + second;
+	return total;
+
+
+}
+int main()
+{
+	int second;
+	int hour;
+	int minuite;
+
+
+	scanf("%d %d %d", &hour, &minuite, &second);
+
+
+	int total;
+
+	total = seconds(hour , minuite, second);
+	printf("%d", total);
+}
