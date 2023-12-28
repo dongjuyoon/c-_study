@@ -1,0 +1,28 @@
+#include <stdio.h>
+int program( int start , int end){
+	int sum;
+	if(start <= end){
+		if(start == end){
+			return start;
+		}
+		while( start <= end){
+			sum += start;
+			start ++;
+		}
+		return sum;
+	}
+	return 0;
+}
+int main()
+{
+	int start; //시작수
+	int end; //끝나는 수
+	
+	scanf("%d %d",&start, &end);
+	int sum; //합
+
+	sum = program(start,end);
+	printf("%d",sum);
+
+	return 0;
+}
