@@ -1,0 +1,18 @@
+#include <stdio.h>
+double c2f(double c) {
+	return c * 1.8 + 32;
+}
+
+double f2c(double f) {
+	return (f - 32) / 1.8;
+}
+
+int main() {
+	double c, f;
+	scanf("%lf", &f);
+	scanf("%lf", &c);
+	printf("%.1lf  %.1lf\n", f2c(f),c2f(c) );
+	return 0;
+}
+
+
