@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct worditem {
+    char *word;
+    int wtype; // 0 noun, 1 verb, 2 adjective
+};
+
+struct itemlist {
+    int numWords;        // 전체 단어 수
+    struct worditem **theList;
+};
+
+// 단어 하나를 입력받아 구조체를 생성하고 반환하는 함수
+struct worditem *getWordItem() {
+    struct worditem *newWord = (struct worditem *)malloc(sizeof(struct worditem));
+    if (newWord == NULL) {
+        fprintf(stderr, "메모리 할당 실패\n");
+        exit(1);
+    }
+
+    char tempWord[100];
+    scanf("%s %d", tempWord, &newWord->wtype);
+
+    // 단어를 동적으로 할당하고 복사
+    newWord->word = strdup(tempWord);
+    if (newWord->word == NULL) {
+        fprintf(stderr, "메모리 할당 실패\n");
+        exit(1);
+    }
+
+    return newWord;
+}
+
+// 단어 목록을 생성하고 반환하는 함수
+struct itemlist *getWordList() {
+    struct itemlist *newList = (struct itemlist *)malloc(sizeof(struct itemlist));
+    if (newList == NULL) {
+        fprintf(stderr, "메모리 할당 실패\n");
+        exit(1);
+    }
+
+    scanf("%d", &newList->numWords);
+
+    // 단어 목록을 위한 포인터 배열 동적 할당
+    newList->theList = (struct worditem **)malloc(newList->numWords * sizeof(struct worditem *));
+    if (newList->theList == NULL) {
+        fprintf(stderr, "메모리 할당 실패\n");
+        exit(1);
+    }
+
+    // 각 단어 항목을 입력 받아 리스트에 추가
+    for (int i = 0; i < newList->numWords; i++) {
+        newList->theList[i] = getWordItem();
+    }
+
+    return newList;
+}
+
+// 단어 목록을 출력하는 함수
+void printAll(struct itemlist *list) {
+    printf("총 %d개 단어\n", list->numWords);
+    for (int i = 0; i < list->numWords; i++) {
+        struct worditem *word = list->theList[i];
+        const char *wtype_str;
+
+        switch (word->wtype) {
+            case 0:
+                wtype_str = "명사";
+                break;
+            case 1:
+                wtype_str = "동사";
+                break;
+            case 2:
+                wtype_str = "형용사";
+                break;
+            default:
+                wtype_str = "알 수 없음";
+        }
+
+        printf("%s\t%s\n", word->word, wtype_str);
+    }
+}
+
+int main() {
+    struct itemlist *myList;
+    myList = getWordList();
+    printAll(myList);
+
+    // 메모리 해제
+    for (int i = 0; i < myList->numWords; i++) {
+        free(myList->theList[i]->word);
+        free(myList->theList[i]);
+    }
+    free(myList->theList);
+    free(myList);
+
+    return 0;
+}
+
