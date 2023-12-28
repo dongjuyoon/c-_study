@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main()
+{
+	int sum; //수열
+
+	sum= 1;
+	printf("%d", sum);
+
+
+	for ( int x=1; x<=13; x++){
+
+		sum += x;
+		printf(", %d", sum);
+	}
+	}
+
+// 버전 3과 비교하여 변수 num을 없애고반복조건을 파악한데로  반복문안에 x로 그 역할을 대신하여 계차수열을 완성함
