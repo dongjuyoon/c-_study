@@ -1,0 +1,68 @@
+#include <stdio.h>
+int main()
+{
+	int n2;
+	int n;
+
+
+
+	scanf("%d %d" , &n, &n2);
+
+
+	if( n <3 &&  n2 < 3 ){
+
+		if( n >= 0 && n2 >= 0){ 
+
+		if( n == 0){
+
+			if ( n2 == 0){
+				printf(" 무");
+			}
+			if ( n2 == 1){
+				printf(" 패");
+			}
+			if ( n2 == 2){
+				printf(" 승 ");
+			}
+		}
+
+		if( n == 1){
+			if ( n2 == 0){
+				printf(" 승");
+			}
+			if ( n2 == 2){
+				printf(" 패 ");
+			}
+			if ( n2 == 1){
+				printf(" 무");
+			}
+
+		}
+
+
+
+		if( n == 2){
+			if ( n2 == 1){
+				printf(" 승");
+			}
+			if ( n2 == 2){
+				printf(" 무 ");
+			}
+			if ( n2 == 0){
+				printf(" 패");
+			}
+		}
+		}
+
+
+	}
+
+	else {
+		printf("오류");
+	}
+
+
+
+
+
+}
