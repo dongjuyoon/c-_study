@@ -1,0 +1,20 @@
+#include <stdio.h>
+void rcpy(char copy[], char org[]){
+	int i;
+	for( i=0; org[i] != 0; i++){
+	}
+
+	int k= i - 1;
+	for( ;k >= 0 ; k--){
+		int n= i -1 - k;
+		copy[n] = org[k];
+	}
+	copy[i]= 0;
+}
+int main(){
+	char org[80], copy[80];
+	scanf("%s", org);
+	rcpy(copy, org);
+	printf("원 스트링: %s, 뒤집힌 스트링: %s\n", org, copy);
+}
+
