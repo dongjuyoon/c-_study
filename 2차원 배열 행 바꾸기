@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define NROW 3
+#define NCOL 4
+int main(){
+	int mat[NCOL ][NROW  ] = {
+		{ 1000, 1001, 1002 },
+		{ 1003, 1004, 1005 },
+		{ 1006, 1007, 1008 },
+		{ 1009, 1010, 1011 }
+	};
+	
+	// 0번 행과 1번 행을 바꾼다.
+	int temp[3] = { };
+	for (int i=0; i<3; i++){
+		temp[i]= mat[0][i];
+		mat[0][i] = mat[1][i];
+		mat[1][i] = temp[i];
+
+	}
+	// 순서대로 행열 모양으로 출력한다. (빈칸 및 줄바꿈으로)
+	for(int i=0; i<4; i++){
+		for(int n =0; n<3; n++){
+			printf(" %d", mat[i][n]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
