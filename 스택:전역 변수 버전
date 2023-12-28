@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct item {
+	int data; 
+	struct item *next;
+};
+
+// 우리 코딩 표준은 전역변수를 안쓰는 것이지만
+// 단계별로 차근차근 나가기 위해
+// 당분간만 전역변수로 쓰자.
+struct item * pStack;
+
+void insert(int n){
+	struct item *pAlloc;
+	pAlloc = (struct item *)malloc(sizeof(struct item));
+	pAlloc -> data = n;
+	
+	pAlloc -> next = pStack;
+	pStack = pAlloc;
+
+	//pAlloc = malloc으로 할당
+	//n값을 넣고
+	//연결
+}
+
+// is_empty 함수는 스택이 비어있으면 1을, 아니면 0을 돌려준다.
+int is_empty(){
+	if(pStack == NULL){
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+// top 함수는 가장 위에 있는 항목 값을 돌려준다.
+int top(){
+	return pStack -> data;
+}
+// pop함수는 가장 위의 항목을 없앤다.
+void pop(){
+	struct item * pfree;
+	
+	pfree = (struct item *)malloc(sizeof(struct item));
+	pfree = pStack;
+	pStack = pStack -> next;
+	
+	free(pfree);
+}
+int main(){
+	pStack = 0;   // 빈 스택으로 초기화.
+	int value;
+
+	while ( scanf("%d", &value) == 1){
+		insert(value);
+	}
+	
+	while ( ! is_empty() ){
+	    printf("stack top is %d\n", top());
+		pop();
+	}
+
+}
