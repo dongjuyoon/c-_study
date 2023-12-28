@@ -1,0 +1,36 @@
+#include <stdio.h>
+struct Point {
+	int x;
+	int y;
+};
+
+int main()
+{
+	struct Point p,q;
+
+	scanf("%d %d", &p.x, &p.y);
+	scanf("%d %d", &q.x ,&q.y);
+
+	if(p.x < q.x){
+		printf("오른쪽");
+	}
+	if(p.x == q.x){
+		printf("같음");
+
+	}
+	if(p.x > q.x){
+		printf("왼쪽");
+	}
+
+	if(p.y < q.y){
+		printf("아래");
+	}
+	if(p.y == q.y){
+		printf("같음");
+
+	}
+	if(p.y > q.y){
+		printf("위");
+	}
+
+}
